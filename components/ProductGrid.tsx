@@ -6,6 +6,7 @@ import { productType } from '@/constants/data';
 import { client } from '@/sanity/lib/client';
 import { Loader2 } from 'lucide-react';
 import LoadingDots from './LoadingDots';
+import NoProductAvailable from './NoProductAvailable';
 
 const ProductGrid = () => {
     const [products, setProducts] =useState([])
@@ -38,13 +39,26 @@ fetchData()
              selectedTab={selectedTab} 
              onTabSelect={setSelectedTab}
              />
-             {!loading ? (
+             {loading ? (
                 <div className='flex flex-col items-center justify-center py-10 min-h-80 bg-gray-100 w-full mt-10'>
                    <LoadingDots/>   
                     <span>Product is Loading...</span>
                 </div>
              ) :(
-                 <>products</>
+                 products.length ?(
+                    <>
+                    {products.map((product)=>(
+                        <div key={product?._id}>
+                           <div>
+                            product
+                           </div>
+                        </div>
+                    ))}
+                    
+                    </>
+                 ) : (
+                    <NoProductAvailable/>
+                 )
              )}
              
         </div>
