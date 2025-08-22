@@ -4,6 +4,7 @@ import { Flame } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import AddToWishListButton from './AddToWishListButton';
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
@@ -18,7 +19,8 @@ const ProductCard = ({ product }: { product: Product }) => {
                         width={700}
                         height={700}
                     />
-                )}       
+                )}  
+                <AddToWishListButton product={product}/>     
                 {product?.status === "sale" && (
                     <p className='absolute top-2 left-2 z-10 text-xs border border-darkColor/50 px-2 rounded-full group-hover:border-lightColor hoverEffect group-hover:text-lightColor'>Sale!</p>
                 )}
@@ -28,14 +30,18 @@ const ProductCard = ({ product }: { product: Product }) => {
 
                 {product?.status === "hot" && <Link
                 href={"/deal"}
-                className='absolute top-2 left-2 z-10 text-xs border border-orange/50 px-2 rounded-full group-hover:border-lightColor hoverEffect group-hover:text-lightColor'
+                className='absolute top-2 left-2 z-10 text-xs border border-orange/50 px-1 py-1 rounded-full group-hover:border-lightColor hoverEffect group-hover:text-lightColor'
                 > 
                 <Flame size={18} fill='#fb6c08'
                 className='text-orange/50 group-hover:text-orange hoverEffect'
                 />
                 </Link>}
                  </div>
-                 <div className='p-3'>Product Details</div>
+                 <div className='p-3'>
+                   {
+                    product?.categories && <p>{product?.categories}</p>
+                   }
+                    </div>
         </div>
     );
 };
