@@ -14,14 +14,14 @@ const HomeTabBar = ({selectedTab, onTabSelect}) => {
                     <button
                     onClick={()=>onTabSelect(item?.title)}
                      key={item.title}
-                     className={`border border-dark_purple/30 px-4 py-1.5 hover:bg-lightColor hover:text-white md:px-6 md:py-2 rounded-full  hoverEffect ${selectedTab === item?.title? "bg-lightColor text-white border-lightColor" : "bg-lightColor/20"}`}
+                     className={`border border-dark_red/30 px-4 py-1.5 hover:bg-lightColor hover:text-white md:px-6 md:py-2 rounded-full  hoverEffect ${selectedTab === item?.title? "bg-lightColor text-white border-lightColor" : "bg-lightColor/20"}`}
                      >
                         {item?.title}
                      </button>
                 ))}
             </div>
             <Link href={"/shop"}
-            className="border border-dark_purple/30 px-4 py-1.5 hover:bg-lightColor hover:text-white md:px-6 md:py-2 rounded-full  hoverEffect"
+            className="border border-dark_red/30 px-4 py-1.5 hover:bg-lightColor hover:text-white md:px-6 md:py-2 rounded-full  hoverEffect"
             >See all</Link>
         </div>
     );

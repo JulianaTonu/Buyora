@@ -14,7 +14,7 @@ const HomeBanner = () => {
                     Grab Upto 50% off on <br />
                     Selected headphone
                 </h1>
-                <Link href={"/shop"} className='bg-dark_purple  hover:bg-[#2d1e59] text-white px-5 py-2 rounded-md text-sm font-semibold  hoverEffect'> Buy Now
+                <Link href={"/shop"} className='bg-dark_red  hover:bg-[#2d1e59] text-white px-5 py-2 rounded-md text-sm font-semibold  hoverEffect'> Buy Now
                 </Link>
             </div>
 

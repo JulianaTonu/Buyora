@@ -14,7 +14,7 @@ const PriceView =({price,discount,className}: Props) => {
             <div className='flex items-center gap-2'>
                <PriceFormatter amount={price} className="text-darkColor"/>
                {price && discount && <PriceFormatter amount= {price + (discount * price)/ 100}
-               className="line-through text-xs font-normal text-lightColor"
+               className="line-through text-xs font-normal text-gray"
              />}
             </div>
         </div>

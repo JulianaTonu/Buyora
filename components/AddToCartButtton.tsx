@@ -15,7 +15,7 @@ const AddToCartButtton = ({product,className}:Props) => {
             <Button 
             // onClick={handleAddToCart}
             disabled={isOutOfStock}
-            className={cn("w-full bg-darkColor text-light_bg shadow-none border my-3 border-dark_purple/80 font-semibold tracking-wide hover:text-white hover:bg-dark_purple hover:border-dark_purple hoverEffect",className)}>
+            className={cn("w-full bg-black text-light_bg shadow-none border my-3 font-semibold tracking-wide hover:text-white hover:bg-dark_red hover:border-dark_red hoverEffect",className)}>
             <ShoppingBag/> {isOutOfStock ? "Out of Stock" : "Add to Cart "}
         </Button>
         </div>

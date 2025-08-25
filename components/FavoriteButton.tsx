@@ -8,7 +8,7 @@ const FavoriteButton = () => {
     return (
         <Link href={"/fav"}className=' relative' >
             <HeartIcon className='w-5 h-5 hover:text-light_purple hoverEffect' />
-            <span className='absolute -top-2 -right-1 flex justify-center items-center h-3.5 rounded-full text-white w-3.5 p-2 font-semibold bg-dark_purple'>0</span>       
+            <span className='absolute -top-2 -right-1 flex justify-center items-center h-3.5 rounded-full text-white w-3.5 p-2 font-semibold bg-dark_red'>0</span>       
              </Link>
     );
 };

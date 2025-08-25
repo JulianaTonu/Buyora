@@ -54,16 +54,16 @@ const ProductCard = ({ product }: { product: Product }) => {
                             <StarIcon size={16}
                                 key={index}
                                 className={
-                                    index < 4 ? "text-lightColor" : "text-gray-500"
+                                    index < 4 ? "text-golden" : "text-gray-400"
                                 }
-                                fill={index < 4 ? "#b444d0" : "#ababab"} />
+                                fill={index < 4 ? "#ede055" : "#96958b"} />
                         ))}
                     </div>
-                    <p className='text-lightColor text-xs tracking-wide Laun'>5 Reviews</p>
+                    <p className='text-gray-400 text-xs tracking-wide Laun'>5 Reviews</p>
                 </div>
                 <div className='flex items-center gap-2.5 mb-2'>
                     <p className=' text-sm '>In Stock</p>
-                    <p className={`text-lightColor font-semibold ${product?. stock === 0? "text-red-600" : ""}`}>
+                    <p className={`text-gray-400 font-semibold ${product?. stock === 0? "text-gray-300" : ""}`}>
                     {(product?.stock as number)>0? product?.stock : "unavailable"}
                     </p>
                 </div>
