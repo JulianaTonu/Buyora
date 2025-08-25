@@ -40,14 +40,14 @@ const ProductCard = ({ product }: { product: Product }) => {
                     />
                 </Link>}
             </div>
-            <div className='p-3 h-40'>
+            <div className='p-3 h-48'>
                 {
                     product?.categories && (
                         <p className='uppercase line-clamp-1 text-xs text-gray-600'>
                             {product?.categories.map((cat) => cat).join(", ")}</p>
                     )
                 }
-                <h3 className='text-sm line-clamp-2 font-semibold my-2'>{product?.name}</h3>
+                <h3 className='text-sm line-clamp-1 font-semibold my-2'>{product?.name}</h3>
                 <div className='flex items-center gap-2 my-2'>
                     <div className='flex items-center'>
                         {[...Array(5)].map((_, index) => (
