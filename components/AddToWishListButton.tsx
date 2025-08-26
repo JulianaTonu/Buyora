@@ -1,6 +1,5 @@
 import { Product } from '@/sanity.types';
 import { Heart } from 'lucide-react';
-import Link from 'next/link';
 import React from 'react';
 
 const AddToWishListButton = ({

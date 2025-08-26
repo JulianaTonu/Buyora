@@ -31,14 +31,14 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
             {/* Sidebar */}
             <div
                 ref={sidebarRef}
-                className={`fixed top-0 left-0 z-50 h-screen w-72 bg-black border-r border-r-light_purple text-white/70 shadow-xl transform transition-transform duration-300
+                className={`fixed top-0 left-0 z-50 h-screen w-72 bg-black border-r border-r-light_red text-white/70 shadow-xl transform transition-transform duration-300
                     ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
             >
                 <div className="flex items-center justify-between p-4">
                     <Logo className="text-white" />
                     <button
                         onClick={onClose}
-                        className="hover:text-light_purple hoverEffect"
+                        className="hover:text-light_red hoverEffect"
                     >
                         X
                     </button>
@@ -50,7 +50,7 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                         <Link
                             key={item?.title}
                             href={item?.href}
-                            className={`hoverEffect hover:text-light_purple ${
+                            className={`hoverEffect hover:text-light_red ${
                                 pathName === item?.href && "text-white font-bold"
                             }`}
                         >

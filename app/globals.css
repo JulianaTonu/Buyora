@@ -6,10 +6,10 @@
 @theme {
     --font-poppins: Poppins, sans-serif;
     --color-shop-light-pink: #f9e8e8;
-    --color-dark_red: #d52345;
+    --color-dark_red:#a30d28 ;
+    --color-light_red:#d52345 ;
     --color-btn_dark_red: #d52345;
     --color-light_bg: #f6f6f6;
-    --color-light_red: #a30d28;
     --color-orange: #fb6c08;
     --color-lightOrange: #fca99b;
     --color-darkColor: #d52345;
