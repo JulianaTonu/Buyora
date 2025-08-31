@@ -1,5 +1,5 @@
 import { sanityFetch } from "../lib/live";
-import { BRAND_QUERY } from "./Query";
+import { BRAND_QUERY } from "./query";
 
 const getCategories = async (quantity?: number) => { 
   try {
