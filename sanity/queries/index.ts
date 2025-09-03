@@ -1,7 +1,7 @@
 import { sanityFetch } from "../lib/live";
-import { BRAND_QUERY, LATEST_BLOG_QUERY } from "./query";
+import { BRAND_QUERY, DEAL_PRODUCTS, LATEST_BLOG_QUERY } from "./query";
 
-const getCategories = async (quantity?: number) => { 
+const getCategories = async (quantity?: number) => {
   try {
     const query = quantity
       ? `*[_type == "category"] | order(name asc) [0...$quantity] {
@@ -28,23 +28,32 @@ const getCategories = async (quantity?: number) => {
 };
 
 
-const getAllBrands = async () =>{
+const getAllBrands = async () => {
   try {
-    const {data} =await sanityFetch({query:BRAND_QUERY});
+    const { data } = await sanityFetch({ query: BRAND_QUERY });
     return data ?? [];
   } catch (error) {
     console.log("Error fetching all brands:", error)
-    
+
   }
 }
 
-const getLatestBlogs =async ()=>{
+const getLatestBlogs = async () => {
   try {
-    const {data} =await sanityFetch({query:LATEST_BLOG_QUERY});
-    return data ?? [] ;
+    const { data } = await sanityFetch({ query: LATEST_BLOG_QUERY });
+    return data ?? [];
   } catch (error) {
-    console.log("Error fetching all latest blog ",error)
+    console.log("Error fetching all latest blog ", error)
   }
 }
 
-export { getCategories ,getAllBrands,getLatestBlogs};
+
+const getDealProducts = async () => {
+  try {
+    const { data } = await sanityFetch({ query: DEAL_PRODUCTS });
+    return data ?? [];
+  } catch (error) {
+    console.log("Error fetching deal Products", error)
+  }
+}
+export { getCategories, getAllBrands, getLatestBlogs, getDealProducts };

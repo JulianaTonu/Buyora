@@ -1,5 +1,4 @@
 import { defineQuery } from "next-sanity";
-import LatestBlog from "../../components/LatestBlog";
 
 const BRAND_QUERY = defineQuery(`*[_type == "brand"] | order(title asc)`);
 
@@ -12,4 +11,9 @@ const LATEST_BLOG_QUERY = defineQuery(`
   }
 `);
 
-export { BRAND_QUERY, LATEST_BLOG_QUERY };
+const DEAL_PRODUCTS = defineQuery(
+  `*[_type == 'product' && status=="hot" ] | order(name asc){
+  ...,"categories": categories[]->title}`
+);
+
+export { BRAND_QUERY, LATEST_BLOG_QUERY,DEAL_PRODUCTS };
