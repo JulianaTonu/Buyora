@@ -9,11 +9,11 @@ const CategoryPage = async ({ params }: { params: { slug: string } }) => {
 
 
     return (
-        <div className="py-10">
+        <div className="p-10">
             <Container>
-                <h1>
+                <h1 className='text-2xl mb-6 font-semibold'>
                     Products by Category:{" "}
-                    <span className="font-bold text-green-600 capitalize">
+                    <span className="font-bold text-lightColor capitalize">
                         {slug && slug}
                     </span>
                 </h1>

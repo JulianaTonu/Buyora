@@ -2,7 +2,7 @@ import Container from '@/components/Container';
 import { getCategories } from '@/sanity/queries';
 import React from 'react';
 
-const CategoryPage = async ({ params }: { params: { slug: string } }) => {
+const CategoryPage = async ({ params }: { params: { slug: string; } }) => {
   const { slug } = params;
 
   // All categories fetch
