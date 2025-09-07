@@ -9,6 +9,9 @@ const NotFoundPage = () => {
         <div className="text-center">
           <Logo />
 
+          <h2 className="mt-6 text-6xl font-extrabold text-lightColor">
+           404
+          </h2>
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
             Looking for something?
           </h2>
@@ -48,7 +51,7 @@ const NotFoundPage = () => {
               className="font-medium text-amazon-blue hover:text-amazon-blue-dark"
             >
               contact us
-            </Link>
+            </Link>           
           </p>
         </div>
       </div>
