@@ -4,7 +4,7 @@ import { getCategories } from '@/sanity/queries';
 import React from 'react';
 
 const CategoryPage = async ({ params }: { params: { slug: string } }) => {
-    const { slug } = params;
+    const { slug } =await params;
     const categories = await getCategories();
 
 
