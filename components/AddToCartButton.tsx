@@ -8,7 +8,7 @@ interface Props{
     className?:string
 }
 
-const AddToCartButtton = ({product,className}:Props) => {
+const AddToCartButton = ({product,className}:Props) => {
     const isOutOfStock = product?.stock === 0;
     return (
         <div>
@@ -22,4 +22,4 @@ const AddToCartButtton = ({product,className}:Props) => {
     );
 };
 
-export default AddToCartButtton;
+export default AddToCartButton;

@@ -4,9 +4,9 @@ import { Flame, StarIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import AddToWishListButton from './AddToWishListButton';
 import PriceView from './PriceView';
-import AddToCartButtton from './AddToCartButtton';
+import AddToWishListButton from './AddToWishListButton';
+import AddToCartButton from './AddToCartButton';
 
 const ProductCard = ({ product }: { product: Product }) => {
     console.log("product", product)
@@ -15,13 +15,16 @@ const ProductCard = ({ product }: { product: Product }) => {
             <div className='relative group overflow-hidden bg-gray-50'>
                 {/* {product?.name} */}
                 {product?.images && (
-                    <Image
+                    <Link href={`/product/${product?.slug?.current}`}>
+                      <Image
                         src={urlFor(product?.images[0]).url()}
                         alt="pImage"
                         loading="lazy"
                         width={700}
                         height={700}
                     />
+                    </Link>
+                  
                 )}
                 <AddToWishListButton product={product} />
                 {product?.status === "sale" && (
@@ -72,7 +75,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                 discount={product?.discount}
                 className="text-sm"
                 />
-                <AddToCartButtton product={product} className="w-36 rounded-full"/>
+                <AddToCartButton product={product} className="w-36 rounded-full"/>
             </div>
         </div>
     );
