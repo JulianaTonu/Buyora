@@ -3,6 +3,7 @@ import Container from '@/components/Container';
 import FavoriteButton from '@/components/FavoriteButton';
 import ImageView from '@/components/ImageView';
 import PriceView from '@/components/PriceView';
+import ProductCharacteristics from '@/components/ProductCharacteristics';
 import { getProductBySlug } from '@/sanity/queries';
 import { StarIcon } from 'lucide-react';
 import React from 'react';
@@ -52,6 +53,7 @@ const SingleProductPage = async ({
                     <AddToCartButton product={product} />
                     <FavoriteButton showProduct={true} product={product} />
                 </div>
+                <ProductCharacteristics product={product}/>
             </div>
         </Container>
     );

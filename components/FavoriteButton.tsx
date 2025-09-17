@@ -21,7 +21,7 @@ const FavoriteButton = ({
           </span>
         </Link>
       ) : (
-        <button>
+        <button className="group relative hover:text-lightColor hoverEffect border border-lightColor/80 hover:border-lightColor p-1.5 rounded-md">
           <HeartIcon className="w-5 h-5 mt-0.5 hover:text-light_red hoverEffect" />
         </button>
       )}
