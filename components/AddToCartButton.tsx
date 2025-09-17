@@ -11,11 +11,11 @@ interface Props{
 const AddToCartButton = ({product,className}:Props) => {
     const isOutOfStock = product?.stock === 0;
     return (
-        <div>
+        <div className=' w-full'>
             <Button 
             // onClick={handleAddToCart}
             disabled={isOutOfStock}
-            className={cn("w-full bg-black text-light_bg shadow-none border my-3 font-semibold tracking-wide hover:text-white hover:bg-light_red hover:border-dark_red hoverEffect",className)}>
+            className={cn("w-full bg-lightColor text-white shadow-none hover:text-black border my-3 font-semibold tracking-wide hover-text-white  hover:bg-black  hoverEffect",className)}>
             <ShoppingBag/> {isOutOfStock ? "Out of Stock" : "Add to Cart "}
         </Button>
         </div>

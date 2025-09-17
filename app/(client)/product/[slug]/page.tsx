@@ -48,7 +48,7 @@ const SingleProductPage = async ({
                         {(product?.stock as number) < 0 ? "In Stock" : "Out of Stock"}
                     </p>
                 </div>
-                <div className='flex items-center gap-2.5 lg:gap-5'>
+                <div className='flex items-center gap-2.5 lg:gap-4'>
                     <AddToCartButton product={product} />
                     <FavoriteButton showProduct={true} product={product} />
                 </div>
