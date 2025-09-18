@@ -11,7 +11,7 @@ interface Props{
 const AddToCartButton = ({product,className}:Props) => {
     const isOutOfStock = product?.stock === 0;
     return (
-        <div className=' w-full'>
+        <div className='w-full'>
             <Button 
             // onClick={handleAddToCart}
             disabled={isOutOfStock}

@@ -20,4 +20,14 @@ const PRODUCT_BY_SLUG_QUERY = defineQuery(
   `*[_type == "product" && slug.current == $slug] | order(name asc) [0]`
 )
 
-export { BRAND_QUERY, LATEST_BLOG_QUERY,DEAL_PRODUCTS,PRODUCT_BY_SLUG_QUERY };
+const BRANDS_QUERY = defineQuery(
+  `*[_type == "product" && slug.current == "brandName":brand->title]`
+)
+
+export {
+  BRAND_QUERY,
+  LATEST_BLOG_QUERY,
+  DEAL_PRODUCTS,
+  PRODUCT_BY_SLUG_QUERY,
+  BRANDS_QUERY
+};
