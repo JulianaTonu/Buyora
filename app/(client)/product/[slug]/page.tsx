@@ -53,7 +53,8 @@ const SingleProductPage = async ({
                     <AddToCartButton product={product} />
                     <FavoriteButton showProduct={true} product={product} />
                 </div>
-                <ProductCharacteristics product={product}/>
+                <ProductCharacteristics product={product} />
+              
             </div>
         </Container>
     );

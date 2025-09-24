@@ -10,7 +10,7 @@ const ProductCharacteristics = async ({
 
 }: { product: Product | null | undefined }) => {
     const brand = await getBrands(product?.slug?.current as string)
-    console.log("brand", brand)
+   
     return (
         <div>
             <Accordion type='single' collapsible>
@@ -23,7 +23,7 @@ const ProductCharacteristics = async ({
                                 {brand && (
                                     
                                     <span className='font-semibold tracking-wide'>
-                                        {brand[0]?.brandName}
+                                        {brand?.brandName}
                                         </span>
                                         )}
                                         </p>
@@ -48,7 +48,7 @@ const ProductCharacteristics = async ({
                     
                 </AccordionItem>
             </Accordion>
-            ProductCharacteristics
+          
         </div>
     );
 };
