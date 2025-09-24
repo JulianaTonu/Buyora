@@ -5,7 +5,7 @@ import ImageView from '@/components/ImageView';
 import PriceView from '@/components/PriceView';
 import ProductCharacteristics from '@/components/ProductCharacteristics';
 import { getProductBySlug } from '@/sanity/queries';
-import { StarIcon } from 'lucide-react';
+import { StarIcon, CircleHelp, LayoutPanelLeft, Truck } from 'lucide-react';
 import React from 'react';
 
 const SingleProductPage = async ({
@@ -54,7 +54,18 @@ const SingleProductPage = async ({
                     <FavoriteButton showProduct={true} product={product} />
                 </div>
                 <ProductCharacteristics product={product} />
-              
+                <div className='flex flex-wrap items-center justify-between gap-2.5 border-b border-b-gray-200 py-5 -mt-2'>
+                    <div className='flex items-center gap-2 text-sm text-black hoverEffect'>
+                        <LayoutPanelLeft className="text-lg" />
+                        <p>Compare Color</p>
+                    </div>
+
+                    <div className='flex items-center gap-2 text-sm text-black hoverEffect'>
+                        <CircleHelp className="text-lg" />
+                        <p>Ask a question</p>
+                    </div>
+                    
+                </div>
             </div>
         </Container>
     );
