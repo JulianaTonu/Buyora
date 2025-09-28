@@ -1,9 +1,19 @@
+'use client'
+import { Brand, Category } from '@/sanity.types';
 import React from 'react';
 
-const Shop = () => {
+ interface Props{
+    categories:Category[];
+    brands:Brand;
+ }
+
+const Shop = ({categories, brand}: Props) => {
     return (
-        <div>
-            
+        <div className='border-t'>
+            <Container className='mt-5'>
+                <div>
+                </div>
+            </Container>
         </div>
     );
 };
