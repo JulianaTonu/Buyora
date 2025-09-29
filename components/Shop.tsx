@@ -1,6 +1,7 @@
 'use client'
 import { Brand, Category } from '@/sanity.types';
 import React from 'react';
+import Container from './Container';
 
  interface Props{
     categories:Category[];
