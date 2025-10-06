@@ -432,5 +432,31 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
+
+// Source: ./sanity/queries/query.ts
+// Variable: BRANDS_QUERY
+// Query: *[_type=='brand'] | order(name asc)
+export type BRANDS_QUERYResult = Array<{
+  _id: string;
+  _type: "brand";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
+
 export type AllSanitySchemaTypes = Address | Blogcategory | Blog | Author | BlockContent | Order | Product | Brand | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
