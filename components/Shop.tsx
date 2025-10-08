@@ -28,6 +28,40 @@ const Shop = ({ categories, brands }: Props) => {
     brandParams || null
   );
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
+  const fetchProducts =async()=>{
+    setLoading(true);
+    try {
+      let minPrice = 0;
+      let maxPrice = 10000;
+      if(selectedPrice){
+        const [min, max] = selectedPrice.split("-").map(Number);
+        minPrice= min;
+        maxPrice=max;
+      }
+      const query =`
+      *[_type == 'product'
+      && (!defined($selectedCategory) || reference(*_type == 
+      "category" && slug.current == $selectedCategory]._id))
+      &&(!defined($selectedBrand) || reference(*[_type == "brand" &&
+      slug.current == $selectedBrand]._id))
+      && price >= $minPrice && price <=$maxPrice
+      ]
+      | order(name asc){
+      ..., "categories": categories[]->title}
+      `;
+      const data =await client.fetch(
+        query,
+        {selectedCategory, selectedBrand, minPrice, maxPrice},
+        {next:{revalidate: 0 }}
+      );
+      setProducts(data);
+      console.log("Products", data)
+    } catch (error) {
+      console.log("Error fetching products", error)
+    }finally{
+      setLoading(false)
+    }
+  }
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -121,7 +155,6 @@ const Shop = ({ categories, brands }: Props) => {
                   ))}
                 </div>
               ) : (
-                // <NoProductAvailable className="bg-white mt-0" />
                 <NoProductAvailable />
               )}
             </div>
