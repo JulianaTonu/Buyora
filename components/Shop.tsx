@@ -94,7 +94,7 @@ const Shop = ({ categories, brands }: Props) => {
       setLoading(false);
     }
   };
-
+console.log(products)
   useEffect(() => {
     fetchProducts();
   }, [selectedCategory, selectedBrand, selectedPrice]);
