@@ -15,10 +15,12 @@ interface Props {
   categories: Category[];
   brands: BRANDS_QUERYResult;
 }
+
 const Shop = ({ categories, brands }: Props) => {
   const searchParams = useSearchParams();
   const brandParams = searchParams?.get("brand");
   const categoryParams = searchParams?.get("category");
+
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
@@ -28,60 +30,32 @@ const Shop = ({ categories, brands }: Props) => {
     brandParams || null
   );
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
-  const fetchProducts =async()=>{
-    setLoading(true);
-    try {
-      let minPrice = 0;
-      let maxPrice = 10000;
-      if(selectedPrice){
-        const [min, max] = selectedPrice.split("-").map(Number);
-        minPrice= min;
-        maxPrice=max;
-      }
-      const query =`
-      *[_type == 'product'
-      && (!defined($selectedCategory) || reference(*_type == 
-      "category" && slug.current == $selectedCategory]._id))
-      &&(!defined($selectedBrand) || reference(*[_type == "brand" &&
-      slug.current == $selectedBrand]._id))
-      && price >= $minPrice && price <=$maxPrice
-      ]
-      | order(name asc){
-      ..., "categories": categories[]->title}
-      `;
-      const data =await client.fetch(
-        query,
-        {selectedCategory, selectedBrand, minPrice, maxPrice},
-        {next:{revalidate: 0 }}
-      );
-      setProducts(data);
-      console.log("Products", data)
-    } catch (error) {
-      console.log("Error fetching products", error)
-    }finally{
-      setLoading(false)
-    }
-  }
+
+  // ✅ single clean fetchProducts function
   const fetchProducts = async () => {
     setLoading(true);
     try {
       let minPrice = 0;
       let maxPrice = 10000;
+
       if (selectedPrice) {
         const [min, max] = selectedPrice.split("-").map(Number);
         minPrice = min;
         maxPrice = max;
       }
+
       const query = `
-      *[_type == 'product' 
-        && (!defined($selectedCategory) || references(*[_type == "category" && slug.current == $selectedCategory]._id))
-        && (!defined($selectedBrand) || references(*[_type == "brand" && slug.current == $selectedBrand]._id))
-        && price >= $minPrice && price <= $maxPrice
-      ] 
-      | order(name asc) {
-        ...,"categories": categories[]->title
-      }
-    `;
+        *[_type == 'product' 
+          && (!defined($selectedCategory) || references(*[_type == "category" && slug.current == $selectedCategory]._id))
+          && (!defined($selectedBrand) || references(*[_type == "brand" && slug.current == $selectedBrand]._id))
+          && price >= $minPrice && price <= $maxPrice
+        ] 
+        | order(name asc) {
+          ...,
+          "categories": categories[]->title
+        }
+      `;
+
       const data = await client.fetch(
         query,
         { selectedCategory, selectedBrand, minPrice, maxPrice },
@@ -89,26 +63,26 @@ const Shop = ({ categories, brands }: Props) => {
       );
       setProducts(data);
     } catch (error) {
-      console.log("Shop product fetching Error", error);
+      console.error("Shop product fetching Error:", error);
     } finally {
       setLoading(false);
     }
   };
-console.log(products)
+
   useEffect(() => {
     fetchProducts();
   }, [selectedCategory, selectedBrand, selectedPrice]);
+
   return (
     <div className="border-t">
       <Container className="mt-5">
+        {/* Header */}
         <div className="sticky top-0 z-10 mb-5">
           <div className="flex items-center justify-between">
             <p className="text-lg uppercase tracking-wide">
               Get the products as your needs
             </p>
-            {(selectedCategory !== null ||
-              selectedBrand !== null ||
-              selectedPrice !== null) && (
+            {(selectedCategory || selectedBrand || selectedPrice) && (
               <button
                 onClick={() => {
                   setSelectedCategory(null);
@@ -122,7 +96,10 @@ console.log(products)
             )}
           </div>
         </div>
+
+        {/* Content */}
         <div className="flex flex-col md:flex-row gap-5 border-t border-t-shop_dark_green/50">
+          {/* Sidebar */}
           <div className="md:sticky md:top-20 md:self-start md:h-[calc(100vh-160px)] md:overflow-y-auto md:min-w-64 pb-5 md:border-r border-r-shop_btn_dark_green/50 scrollbar-hide">
             <CategoryList
               categories={categories}
@@ -131,14 +108,16 @@ console.log(products)
             />
             <BrandList
               brands={brands}
-              setSelectedBrand={setSelectedBrand}
               selectedBrand={selectedBrand}
+              setSelectedBrand={setSelectedBrand}
             />
             <PriceList
-              setSelectedPrice={setSelectedPrice}
               selectedPrice={selectedPrice}
+              setSelectedPrice={setSelectedPrice}
             />
           </div>
+
+          {/* Product Grid */}
           <div className="flex-1 pt-5">
             <div className="h-[calc(100vh-160px)] overflow-y-auto pr-2 scrollbar-hide">
               {loading ? (
@@ -150,8 +129,8 @@ console.log(products)
                 </div>
               ) : products?.length > 0 ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
-                  {products?.map((product) => (
-                    <ProductCard key={product?._id} product={product} />
+                  {products.map((product) => (
+                    <ProductCard key={product._id} product={product} />
                   ))}
                 </div>
               ) : (
