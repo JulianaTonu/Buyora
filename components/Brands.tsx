@@ -46,7 +46,7 @@ const Brands = async () => {
             <div className='flex flex-wrap items-center justify-center gap-10 mt-14 max-md:px-2 '>
                 {brands?.slice(0, 6).map((brand) => (
                     <Link key={brand._id} className='bg-white p-4 rounded-md hover:shadow-2xl' 
-                    href={`/brand/${brand?.slug?.current}`}>
+                   href={{ pathname: "/shop", query: { brand: brand?.slug?.current } }}>
                         {brand?.image && (
                             <Image
                                 src={urlFor(brand?.image).url()}
