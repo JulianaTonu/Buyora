@@ -1,7 +1,6 @@
-import { Category } from "@/sanity.types";
+"use client";
 import React from "react";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Label } from "../ui/label";
+import { Category } from "@/sanity.types";
 
 interface Props {
   categories: Category[];
@@ -16,34 +15,42 @@ const CategoryList = ({
 }: Props) => {
   return (
     <div className="w-full bg-white p-5">
-      <p className="text-base font-black">Product Categories</p>
-      <RadioGroup value={selectedCategory || ""} className="mt-2 space-y-1">
-        {categories?.map((category) => (
-          <div
-            onClick={() => {
-              setSelectedCategory(category?.slug?.current as string);
-            }}
-            key={category?._id}
-            className="flex items-center space-x-2 hover:cursor-pointer"
-          >
-            <RadioGroupItem
-              value={category?.slug?.current as string}
-              id={category?.slug?.current}
-              className="rounded-sm"
-            />
-            <Label
-              htmlFor={category?.slug?.current}
-              className={`${selectedCategory === category?.slug?.current ? "font-semibold text-shop_dark_green" : "font-normal"}`}
+      <p className="text-base font-black mb-2">Product Categories</p>
+
+      <div className="space-y-2">
+        {categories?.map((category) => {
+          const slug = category?.slug?.current as string;
+          return (
+            <label
+              key={category?._id}
+              className="flex items-center space-x-2 cursor-pointer"
             >
-              {category?.title}
-            </Label>
-          </div>
-        ))}
-      </RadioGroup>
+              <input
+                type="radio"
+                name="category"
+                value={slug}
+                checked={selectedCategory === slug}
+                onChange={() => setSelectedCategory(slug)}
+                className="h-4 w-4 text-shop_dark_green border-gray-300 rounded-full"
+              />
+              <span
+                className={`${
+                  selectedCategory === slug
+                    ? "font-semibold text-shop_dark_green"
+                    : "font-normal"
+                }`}
+              >
+                {category?.title}
+              </span>
+            </label>
+          );
+        })}
+      </div>
+
       {selectedCategory && (
         <button
           onClick={() => setSelectedCategory(null)}
-          className="text-sm font-medium mt-2 underline underline-offset-2 decoration-[1px] hover:text-shop_dark_green hoverEffect text-left"
+          className="text-sm font-medium mt-3 underline underline-offset-2 decoration-[1px] hover:text-shop_dark_green hoverEffect text-left"
         >
           Reset selection
         </button>

@@ -1,4 +1,5 @@
 "use client";
+
 import { BRANDS_QUERYResult, Category, Product } from "@/sanity.types";
 import React, { useEffect, useState } from "react";
 import Container from "./Container";
@@ -31,7 +32,7 @@ const Shop = ({ categories, brands }: Props) => {
   );
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
 
-  // ✅ single clean fetchProducts function
+  // ✅ Corrected fetchProducts function
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -45,14 +46,22 @@ const Shop = ({ categories, brands }: Props) => {
       }
 
       const query = `
-        *[_type == 'product' 
-          && (!defined($selectedCategory) || references(*[_type == "category" && slug.current == $selectedCategory]._id))
-          && (!defined($selectedBrand) || references(*[_type == "brand" && slug.current == $selectedBrand]._id))
+        *[_type == "product"
+          && (
+            !defined($selectedCategory)
+            || $selectedCategory in categories[]->slug.current
+          )
+          && (
+            !defined($selectedBrand)
+            || $selectedBrand == brand->slug.current
+          )
           && price >= $minPrice && price <= $maxPrice
-        ] 
+        ]
         | order(name asc) {
           ...,
-          "categories": categories[]->title
+          "categories": categories[]->{title, slug},
+          "brandName": brand->title,
+          "brandSlug": brand->slug.current
         }
       `;
 
@@ -61,6 +70,7 @@ const Shop = ({ categories, brands }: Props) => {
         { selectedCategory, selectedBrand, minPrice, maxPrice },
         { next: { revalidate: 0 } }
       );
+
       setProducts(data);
     } catch (error) {
       console.error("Shop product fetching Error:", error);
@@ -69,6 +79,7 @@ const Shop = ({ categories, brands }: Props) => {
     }
   };
 
+  // 👇 refetch on filter change
   useEffect(() => {
     fetchProducts();
   }, [selectedCategory, selectedBrand, selectedPrice]);

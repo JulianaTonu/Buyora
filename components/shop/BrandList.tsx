@@ -16,6 +16,7 @@ const BrandList = ({ brands, selectedBrand, setSelectedBrand }: Props) => {
 
       <RadioGroup
         value={selectedBrand || ""}
+        onValueChange={(value) => setSelectedBrand(value)}
         className="mt-2 space-y-1"
       >
         {brands?.map((brand) => {
@@ -23,12 +24,11 @@ const BrandList = ({ brands, selectedBrand, setSelectedBrand }: Props) => {
           return (
             <div
               key={brand?._id}
-              onClick={() => setSelectedBrand(slug)}
               className="flex items-center space-x-2 cursor-pointer"
             >
               <RadioGroupItem
-                value={brand?.slug?.current as string}
-                id={brand?.slug?.current}
+                value={slug}
+                id={slug}
                 className="rounded-sm"
               />
               <Label
