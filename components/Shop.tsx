@@ -86,7 +86,7 @@ const Shop = ({ categories, brands }: Props) => {
 
   return (
     <div className="border-t">
-      <Container className="mt-5">
+      <Container className="mt-5"> 
         {/* Header */}
         <div className="sticky top-0 z-10 mb-5">
           <div className="flex items-center justify-between">
